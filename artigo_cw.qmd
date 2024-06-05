@@ -1,0 +1,227 @@
+---
+title: '**Desigualdade de Renda: Uma análise para as mesorregiões e microrregiões do Estado da Paraíba**'
+#subtitle: "**Desmistificando mais um monstro da estatística descritiva**"
+abstract: "O presente estudo teve como propósito analisar as desigualdades de renda entre os municípios, as mesorregiões e as microrregiões do estado da Paraíba, para os anos de 2010 e 2021. Analisou-se a distribuição espacial do PIB e do PIB per capita, medindo a concentração e dispersão pelo método do Coeficiente de Variação Ponderado de Williamson. Os resultados mostraram uma pequena redução na desigualdade intra-regional do Estado. No entanto, ao se analisar as desigualdades nos agrupamentos espaciais das microrregiões, observou-se que das 23 microrregiões, vinte tiveram redução do coeficiente, ao passo que três, João Pessoa, Campina Grande e Litoral Norte, apresentaram variação positiva, demonstrando aumento na concentração de renda. O estudo está inserido na categoria de pesquisa básica, classificada como descritiva e explicativa."
+author: "Evandro Farias Rocha"
+editor: visual
+lang: pt
+bibliography: references.bib
+csl: abnt.csl
+language: 
+  toc-title-document:
+format: 
+  html:
+    toc: true
+    code-fold: true
+    embed-resources: true
+    page-layout: full
+    fig-asp: 0.618
+    fig-width: 6
+    fig-height: 5
+    fig-dpi: 300
+    fig-align: center
+    df-print: kable
+    # carrega pacotes LaTeX e outras definições para aproximar o padrão ABNT.
+    #include-in-header: src/yaml/in-header.tex # se mudar o caminho do arquivo, tem que alterar aqui.    
+jupyter: python3  
+theme:
+  light: flatly
+  dark: darkly
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+## Introdução
+
+O Fórum Celso Furtado de Desenvolvimento da Paraíba sediará no mês de julho de 2024 o **Seminário III: Interiorização do Desenvolvimento da Paraíba**, cujo objetivo é promover o debate sobre a realidade socioeconômica da Paraíba e apontar perspectivas, desafios e soluções para um processo de interiorização voltado para o desenvolvimento inclusivo e sustentável. Na oportunidade serão discutidos temas envolvendo concentração da renda, dispersão socioeconômica e produtiva, desenvolvimento com inclusão e sustentabilidade. Espera-se, ao final do seminário, que surjam propostas e projetos norteadores de ações e planos de governos estadual e municipais alinhados com o novo paradigma do desenvolvimento sustentável.
+
+O debate sobre as disparidades regionais e a concentração de renda tem alcançado relevante destaque no Brasil. Não obstantes as condições históricas de sua formação e as condições estruturais, marcadas por distorções na distribuição setorial e espacial da renda, o país conseguiu, principalmente nas três últimas décadas, melhorar seus indicadores socioeconômicos e apresentar taxas positivas de crescimento. Essas mudanças decorreram, em parte, em razão das políticas públicas de transferência de rendas, aumento real da renda do trabalho, investimentos em obras estruturantes e implementações de políticas anticíclicas que minimizaram os efeitos e pressões de crises internas e externas. Contudo, mesmo com o país retomando a agenda do crescimento, problemas na distribuição de renda regional e intra-regional ainda persiste, e em alguns casos até se agravaram.
+
+A questão regional brasileira está bem fundamentada na obra de Celso Furtado. Na construção de sua teoria, Celso Furtado desenvolveu uma concepção histórico-estrutural que possibilitou compreender a problemática do subdesenvolvimento, suas causas e formas de superação, descolada dos modelos teóricos tradicionais. Para Furtado
+
+
+<style>
+blockquote {
+    border-left: none; /* Remove a borda esquerda do bloco de citação */
+    margin-left: 0; /* Remove o recuo padrão do bloco de citação 
+    }
+</style>
+
+>>>(...) as mudanças espaciais dependem, fundamentalmente, de quatro fatores, a saber: a) do ritmo de crescimento econômico, cujo aumento possibilita maior elasticidade espacial; b) do número de novas plantas, especialmente de plantas motrizes; c) das plantas de processamento secundário, não dependentes de insumos e matérias-primas primárias; d) das economias de escala, as quais se ampliam com o progresso técnico [@Diniz2020 p. 321].
+
+
+Este trabalha apresenta uma análise da distribuição espacial do PIB e do PIB per capita para as mesorregiões e microrregiões do Estado da Paraíba, para os anos de 2010 e 2021. Optou-se pelo indicador de medida de dispersão de Williamson (1977) para medir o grau de desigualdade e dispersão entre as regiões da Paraíba.  
+
+
+
+## 1. O PIB e o PIB per capita na Paraíba
+
+
+O estado da Paraíba é formado por 223 municípios divididos geograficamente em quatro mesorregiões e 23 microrregiões. Seu espaço territorial compreende uma área terrestre de 56.469 km², equivalente a 3,62% do Nordeste e 0,67% do Brasil. Segundo o último Censo Demográfico do IBGE, ano base 2022, a população residente da Paraíba totalizou 3.974.687 habitantes, apresentando um crescimento de 5,5% (0,45% a.a.) em relação ao ano de 2010, que representava 3.766.834 habitantes. Em 2021, estado gerou um PIB de R$ 77.470 bilhões (a preços correntes). Esse valor representa um crescimento de 131% em relação aos R$ 33.522 bilhões registrados em 2010. A preços constantes, tomando-se como referência o ano de 2021, o crescimento real do PIB foi de 14%. No mesmo período, o PIB per capita, a preços contantes de 2021, saiu de R$ 18.049,00 para R$ 19.082,00, um crescimento de 5,7% para o período.
+
+O mapa abaixo apresenta a distribuição espacial do PIB paraibano por mesorregião em 2021. Como pode ser observado, a região da Mata Paraibana tem posição destacada, concentrando 51% do PIB do estado. Em 2010 essa região respondia  por 51.6% do PIB, praticamente a mesma participação observado em 2021.
+
+
+![](figuras/map_mesorregia_pib.png){fig-align="center"}
+
+A Tabela 1 apresenta a distribuição espacial do PIB paraibano para as mesorregiões do estado da paraíba nos anos de 2010 e 2021. Os dados revelam que, passado uma década, a participação relativa das mesorregiões no PIB paraibano permaneceu praticamente a mesma. Polari (2012) destaca que, nas últimas décadas, a economia paraibana vem se concentrando na região metropolitana de João Pessoa. Para o autor, "a elevada concentração da riqueza, da renda e da propriedade e posse da terra é um dos aspectos que atuam permanentemente como causas e efeitos básicos do subdesenvolvimento" [@Polari2012 p. 321].
+
+```{python}
+from great_tables import GT, md, html, exibble
+from great_tables.data import islands
+import pandas as pd
+
+df = {
+  'Região': ['Mata Paraibana', 'Agreste Paraibano', 'Sertão Paraibano', 'Borborema'],
+  'PIB_10':['17.314.577','9.476.494', '5.155.121', '15.762.98'],
+  'pct_10':[51.64, 28.29, 15.38, 6.69],
+  'PIB_pc_10':[7.896, 5.368, 5.025, 5.307],
+  'PIB_21':['39.635.212', '21.348.397', '12.317.583','4.169.137'],
+  'pct_21':[51.17,27.54,15.87,5.36],
+  'PIB_pc_21':[22.027, 11.631, 11.327, 12.513]}
+
+
+df = pd.DataFrame(df)
+(
+    GT(df, rowname_col = "Região")
+    .tab_header(
+        title="Tabela 1: Mesorregiões da Paraíba",
+        subtitle="Distribuição espacial do PIB e PIB per capita"
+    )
+    .tab_source_note(
+        source_note="Fonte: IBGE/SIDRA"
+    )
+    .tab_source_note(
+         source_note="Nota: PIB a preços correntes"
+    )
+    .tab_stubhead(label="Mesorregião")
+    .tab_spanner(
+        label="2010",
+        columns=["PIB", "pct_10",'PIB_pc_10'])
+    .tab_spanner(
+         label="2021",
+         columns=["PIB_21", "pct_21",'PIB_pc_21'])
+)
+```
+
+
+### Microrregiões
+
+O estado da Paraíba é formado por 23 microrregiões classificadas pelo IBGE com base nas similaridades econômicas e sociais de cada município. O Mapa a seguir apresenta a distribuição espacial do PIB para o ano 2021 nas microrregiões do Estado.
+
+![](figuras/map_microrregiao_pib.png){fig-align="center"}
+
+Em 2021, o PIB das microrregiões de João Pessoa, Litoral Sul, Guarabira, Sousa e Cajazeiras totalizava 72% do PIB estadual, sendo que João Pessoa e Campina Grande responderam, juntas, por 55% do PIB total. 
+
+
+
+```{python}
+import pandas as pd
+df_micro = pd.read_csv('dados/df_merge_micro.csv', sep=',')
+df_micro.rename(columns={'PIB_x':'PIB_10','pct_x':'pct_10', 'PIB_pc_x':'PIB_pc_10','PIB_y':'PIB_21','pct_y':'pct_21','PIB_pc_y':'PIB_pc_21'}, inplace=True)
+df_micro = df_micro.sort_values('PIB_10', ascending=False)
+
+(
+    GT(df_micro, rowname_col = "nome_microrregiao")    
+    .fmt_number(columns=["pct_10", "pct_21","PIB_pc_10","PIB_pc_21"], decimals=2)
+    .tab_header(
+        title="Tabela 2: Microrregiõe da Paraíba e PIB per capita",
+        subtitle="Distribuição espacial do PIB"
+    )
+    .tab_source_note(
+        source_note="Fonte: IBGE/SIDRA"
+    )
+    .tab_source_note(
+        source_note=md("Nota: PIB a preços correntes")
+    )
+    .tab_stubhead(label="Microrregião")
+    .tab_spanner(
+        label="2010",
+        columns=["PIB_10", "pct_10",'PIB_pc_10'])
+    .tab_spanner(
+         label="2021",
+         columns=["PIB_21", "pct_21",'PIB_pc_21']
+        )
+ 
+
+)
+```
+
+A Tabela 2 apresenta os valores do PIB das microrregiões, nos anos de 2010 e 2021, com suas respectivas participações relativas. Observa-se que as microrregiões de João Pessoa e Campina Grande tiveram redução na participação relativa do PIB. A microrregião de João Pessoa, que em 2010 respondia por 44% do PIB estadual, passou para 39% em 2021. No mesmo período, a microrregião de Campina Grande reduziu sua participação de 16% para 15%. As microrregiões do Litoral Sul e de Guarabira tiveram desempenho positivos. O Litoral Sul passou de 2,6% para 6,2% - desempenho que pode ser atribuído a implantação de uma planta industrial de cimento no município de Alhandra; e a microrregião de Guarabira que saiu de uma participação relativa de 2,9% para 3,8%. As demais microrregiões permaneceram praticamente na mesma posição. 
+
+### O PIB per capita da Paraíba
+
+A média do PIB per capita das microrregiões da Paraíba em 2021 foi de R$ 16.186,00, sendo que, das 23 microrregiões, 17 ficaram abaixo deste valor e 6 acima. O Litoral Sul foi a microrregião com maior PIB per capita, R$ 54.331,00, valor cinco vezes maior que o menor registrado de R$ 9.934,00 referente a microrregião de Umbuzeiro.
+
+Entre os municípios a disparidade do PIB per capita é ainda mais elevada. O mapa abaixo apresenta a distribuição espacial do PIB per capita por municípios. Como pode ser observado, o valor do PIB per capita do município de Alhandra, localizado na microrregião do Litoral Sul, por exemplo, foi cerca de 21 vezes maior que o do município de Bonito de Santa Fé, localizado na microrregião de Cajazeiras. Em 2021, a média do PIB per capita dos municípios da Paraíba foi R$ 13.090,91, sendo que 173 municípios ficaram abaixo desta média e 50 acima.
+
+
+![](figuras/map_pib_percapita_mun.png){fig-align="center"}
+
+
+## 2. O Coeficiente de Variação de Willeamson
+
+**O Coeficiente de Variação Ponderada de Willeamson (Vw)** é um método utilizada para mensurar a dispersão de rendimento regional per capita em relação à média estadual, considerando o desvio regional ponderado por sua participação na população estadual. O valor VW varia entre o máximo de um e o mínimo de zero, sendo que, quanto mais próximo da unidade, maiores serão as desigualdades regionais de renda per capita. A fórmula utilizada para o cálculo é a seguinte:
+
+#### **Para as mesorregiões**
+
+$$
+V_{w} = \frac{\sqrt{\sum_{i}(x_i-\bar{y})²(y_i-\bar{y})}\frac{f_i}{n}}{n}
+$$
+
+Onde:
+
+$V_{w}$ corresponde ao coeficiente de disparidades da mesorregiões <br>
+$y_i$ é o PIB per capita da *i-ésima* do estado <br>
+$\bar{y}$ é o PIB per capita da mesorregião <br>
+$n$ população total da mesorregião <br>
+$f_i$ é a população da *i-ésima* do estado. <br>
+
+
+
+#### **Para as microrregiões**
+
+$$
+V_{w} = \frac{\sqrt{\sum_{i}(x_i-\bar{y})²(y_i-\bar{y})}\frac{f_i}{n}}{n}
+$$
+
+Onde:
+
+$V_{w}$ corresponde ao coeficiente de disparidade das microrregiões <br>
+$y_i$ é o PIB per capita da *i-ésima* do estado <br>
+$\bar{y}$ é o PIB per capita da microrregião <br>
+$n$ população total da microrregião <br>
+$f_i$ é a população da *i-ésima* do estado.
+
+A Tabela 3 apresenta os valores calculados do coeficiente de Williamson para microrregiões da Paraíba nos anos de 2010 e 2021. Das 23  microrregiões, vinte tiveram redução no coeficiente, indicado moderado processo de convergência e desconcentração da renda em seus municípios. João Pessoa, Campina Grande e Litoral Norte aumentaram o coeficiente, sinalizando para um aumento na concentração de renda em seus municípios.
+
+
+```{python}
+from great_tables import GT, md, html
+from great_tables.data import islands
+import pandas as pd
+
+df_cw = pd.read_csv('dados/comapra_cw_ano.csv', sep=';', index_col= 0)
+df_cw = round(df_cw.sort_values('cw_2021', ascending=False),3)
+(
+    GT(df_cw, rowname_col = "nome_microrregiao")
+    .tab_header(
+        title="Tabela 3: Microrregiões da Paraíba: 2010 e 2021",
+        subtitle="Coeficiente de Willeamson"
+    )
+    .tab_source_note(
+        source_note="Fonte: IBGE/SIDRA"
+    )
+    .tab_source_note(
+        source_note=md("Nota: Elaborado pelo autor")
+    )
+    .tab_stubhead(label="Microrregião")
+)
+```
+
+
+
+
+
