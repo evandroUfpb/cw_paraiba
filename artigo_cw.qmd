@@ -195,7 +195,7 @@ $\bar{y}$ é o PIB per capita da microrregião <br>
 $n$ população total da microrregião <br>
 $f_i$ é a população da *i-ésima* do estado.
 
-A Tabela 3 apresenta os valores calculados do coeficiente de Williamson para microrregiões da Paraíba nos anos de 2010 e 2021. Das 23  microrregiões, vinte tiveram redução no coeficiente, indicado moderado processo de convergência e desconcentração da renda em seus municípios. João Pessoa, Campina Grande e Litoral Norte aumentaram o coeficiente, sinalizando para um aumento na concentração de renda em seus municípios.
+A Tabela 3 apresenta os valores calculados do coeficiente de Williamson para microrregiões da Paraíba nos anos de 2010 e 2021. Das 23  microrregiões, vinte tiveram redução no coeficiente, indicando moderado processo de convergência e desconcentração da renda em seus municípios. João Pessoa, Campina Grande e Litoral Norte aumentaram o coeficiente, sinalizando para um aumento na concentração de renda em seus municípios.
 
 
 ```{python}
